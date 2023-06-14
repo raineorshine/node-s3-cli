@@ -7,18 +7,19 @@
     "s3-cli": "./cli.js"
   },
   "author": "Andrew Kelley <superjoe30@gmail.com>",
+  "contributor": "Raine Revere <raine@cybersemics.org>",
   "license": "MIT",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "./cli.js"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/andrewrk/node-s3-cli.git"
+    "url": "git://github.com/raineorshine/node-s3-cli.git"
   },
   "bugs": {
-    "url": "https://github.com/andrewrk/node-s3-cli/issues"
+    "url": "https://github.com/raineorshine/node-s3-cli/issues"
   },
-  "homepage": "https://github.com/andrewrk/node-s3-cli",
+  "homepage": "https://github.com/raineorshine/node-s3-cli",
   "dependencies": {
     "human-size": "~1.1.0",
     "ini": "~4.1.1",

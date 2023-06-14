@@ -1,3 +1,9 @@
+Raine's fork
+
+- Upgrade dependencies so it works on node >= v12
+
+---
+
 # s3 cli
 
 Command line utility frontend to [node-s3-client](https://github.com/andrewrk/node-s3-client).
