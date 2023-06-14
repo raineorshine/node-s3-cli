@@ -1,7 +1,7 @@
-Raine's fork
+**Raine's fork 🍴**
 
 - Upgrade dependencies so it works on node >= v12
-- Use `AWS_ENDPOINT` environment variable or `endpoint` config key to override endpoint, e.g. nyc3.digitaloceanspaces.com
+- Use `AWS_ENDPOINT` environment variable or `endpoint` config key to override AWS endpoint, e.g. nyc3.digitaloceanspaces.com
 
 ---
 
