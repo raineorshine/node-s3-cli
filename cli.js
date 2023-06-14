@@ -47,7 +47,7 @@ var client
 fs.readFile(args.config, { encoding: 'utf8' }, function (err, contents) {
   if (err) {
     if (process.env.AWS_SECRET_KEY && process.env.AWS_ACCESS_KEY) {
-      setup(process.env.AWS_SECRET_KEY, process.env.AWS_ACCESS_KEY)
+      setup(process.env.AWS_SECRET_KEY, process.env.AWS_ACCESS_KEY, process.AWS_ENDPOINT)
     } else {
       console.error('This utility needs a config file formatted the same as for s3cmd')
       console.error('or AWS_SECRET_KEY and AWS_ACCESS_KEY environment variables.')
@@ -56,20 +56,21 @@ fs.readFile(args.config, { encoding: 'utf8' }, function (err, contents) {
     return
   }
   var config = ini.parse(contents)
-  var accessKeyId, secretAccessKey
+  var accessKeyId, secretAccessKey, endpoint
   if (config && config.default) {
     accessKeyId = config.default.access_key
     secretAccessKey = config.default.secret_key
+    endpoint = config.default.endpoint
   }
   if (!secretAccessKey || !accessKeyId) {
     console.error('Config file missing access_key or secret_key')
     process.exit(1)
     return
   }
-  setup(secretAccessKey, accessKeyId)
+  setup(secretAccessKey, accessKeyId, endpoint)
 })
 
-function setup(secretAccessKey, accessKeyId) {
+function setup(secretAccessKey, accessKeyId, endpoint) {
   var maxSockets = parseInt(args['max-sockets'], 10)
   http.globalAgent.maxSockets = maxSockets
   https.globalAgent.maxSockets = maxSockets
@@ -79,6 +80,7 @@ function setup(secretAccessKey, accessKeyId) {
       secretAccessKey: secretAccessKey,
       sslEnabled: !args.insecure,
       region: args.region,
+      endpoint,
     },
   })
   var cmd = args._.shift()
