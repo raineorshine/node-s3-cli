@@ -8,14 +8,6 @@
   },
   "author": "Andrew Kelley <superjoe30@gmail.com>",
   "license": "MIT",
-  "dependencies": {
-    "ini": "~4.1.1",
-    "minimist": "~1.2.8",
-    "osenv": "~0.1.5",
-    "s3": "~4.4.0",
-    "human-size": "~1.1.0"
-  },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -26,5 +18,18 @@
   "bugs": {
     "url": "https://github.com/andrewrk/node-s3-cli/issues"
   },
-  "homepage": "https://github.com/andrewrk/node-s3-cli"
+  "homepage": "https://github.com/andrewrk/node-s3-cli",
+  "dependencies": {
+    "human-size": "~1.1.0",
+    "ini": "~4.1.1",
+    "minimist": "~1.2.8",
+    "osenv": "~0.1.5",
+    "s3": "~4.4.0"
+  },
+  "devDependencies": {
+    "prettier": "^2.8.8"
+  },
+  "overrides": {
+    "graceful-fs": "^4.2.11"
+  }
 }
