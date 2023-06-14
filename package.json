@@ -10,7 +10,8 @@
   "contributor": "Raine Revere <raine@cybersemics.org>",
   "license": "MIT",
   "scripts": {
-    "start": "./cli.js"
+    "start": "./cli.js",
+    "test": "./cli.js"
   },
   "repository": {
     "type": "git",
