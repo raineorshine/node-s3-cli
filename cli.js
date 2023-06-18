@@ -7,7 +7,6 @@ var ini = require('ini')
 var fs = require('fs')
 var path = require('path')
 var s3 = require('s3')
-var url = require('url')
 var http = require('http')
 var https = require('https')
 var argOptions = {
