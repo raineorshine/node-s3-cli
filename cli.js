@@ -44,28 +44,22 @@ barfOnUnexpectedArgs()
 var client
 
 fs.readFile(args.config, { encoding: 'utf8' }, function (err, contents) {
-  if (err) {
-    if (process.env.AWS_SECRET_KEY && process.env.AWS_ACCESS_KEY) {
-      setup(process.env.AWS_SECRET_KEY, process.env.AWS_ACCESS_KEY, process.AWS_ENDPOINT)
-    } else {
-      console.error('This utility needs a config file formatted the same as for s3cmd')
-      console.error('or AWS_SECRET_KEY and AWS_ACCESS_KEY environment variables.')
-      process.exit(1)
-    }
-    return
-  }
-  var config = ini.parse(contents)
-  var accessKeyId, secretAccessKey, endpoint
-  if (config && config.default) {
-    accessKeyId = config.default.access_key
-    secretAccessKey = config.default.secret_key
-    endpoint = config.default.endpoint
-  }
+  // if there is an error, contents will be empty
+  var config = err ? { default: {} } : ini.parse(contents)
+  var accessKeyId = process.env.AWS_ACCESS_KEY || config.default.access_key
+  var secretAccessKey = process.env.AWS_SECRET_KEY || config.default.secret_key
+  var endpoint = process.env.AWS_ENDPOINT || config.default.endpoint
+
   if (!secretAccessKey || !accessKeyId) {
-    console.error('Config file missing access_key or secret_key')
+    if (!accessKeyId) {
+      console.error('Missing AWS_ACCESS_KEY environment variable or access_key config variable.')
+    }
+    if (!secretAccessKey) {
+      console.error('Missing AWS_SECRET_KEY environment variable or secret_key config variable.')
+    }
     process.exit(1)
-    return
   }
+
   setup(secretAccessKey, accessKeyId, endpoint)
 })
 
